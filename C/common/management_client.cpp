@@ -971,6 +971,8 @@ bool ManagementClient::deleteProxy(const std::string& serviceName)
 	}
 	return false;
 }
+
+/**
  * Checks and validate the JWT bearer token object as reference
  *
  * @param request	The bearer token object
