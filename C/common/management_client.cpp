@@ -888,7 +888,8 @@ bool ManagementClient::addProxy(const std::string& serviceName,
 	ostringstream convert;
 
 	try {
-		convert << "{ \"" << operation << "\" : { ";
+		convert << "{ \"service_name\" : \"" << JSONescape(serviceName) << "\", ";
+		convert << "\"" << operation << "\" : { ";
 		convert << "\"" << publicEndpoint << "\" : ";
 		convert << "\"" << privateEndpoint << "\" } }";
 
@@ -913,19 +914,17 @@ bool ManagementClient::addProxy(const std::string& serviceName,
 			return false;
 		}
 
-
 		if (doc.HasMember("message"))
 		{
-			// Erropr
-			m_logger->error("Failed to add audit entry: %s.",
-				doc["message"].GetString());
+			// Error
+			m_logger->error("For service '%s', add proxy failed: %s.", serviceName.c_str(), doc["message"].GetString());
 			return false;
 		}
 		return true;
 	}
 	catch (const SimpleWeb::system_error &e)
 	{
-		m_logger->error("Failed to add audit entry: %s.", e.what());
+		m_logger->error("Failed to add proxy: %s.", e.what());
 		return false;
 	}
 	return false;
