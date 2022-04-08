@@ -1006,7 +1006,7 @@ bool ManagementClient::addProxy(const std::string& serviceName,
 	}
 	catch (const SimpleWeb::system_error &e)
 	{
-		m_logger->error("Failed to add proxy entry: %s.", e.what());
+		m_logger->error("Failed to add proxy: %s.", e.what());
 		return false;
 	}
 	return false;
