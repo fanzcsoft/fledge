@@ -164,7 +164,7 @@ if [[ $YUM_PLATFORM = true ]]; then
 	fi
 
 	# Numpy libraries	
-	yum install -y numpy
+	yum install -y python3-numpy
 
 	yum install -y wget
 	yum install -y zlib-devel
@@ -220,7 +220,7 @@ if [[ $YUM_PLATFORM = true ]]; then
 		set +e
 		source scl_source enable rh-python36
 		pip3 install --upgrade pip
-		pip3 install numpy
+		# pip3 install numpy
 		set -e
 	fi
 
